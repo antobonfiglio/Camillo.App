@@ -1,0 +1,256 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}} 
+    </div>
+
+    <div class="panel-body">
+    
+        <form class="form-horizontal"
+            novalidate autocomplete="off"
+            (ngSubmit)="save()"
+            [formGroup]="patientForm">
+    
+            <fieldset class="fieldset">
+
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('firstName').touched || 
+                                                  patientForm.get('firstName').dirty) && 
+                                                  !patientForm.get('firstName').valid }">
+
+                        <label class="col-md-2 control-label" for="firstNameId">First Name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   id="firstNameId" 
+                                   type="text" 
+                                   placeholder="First Name (required)" 
+                                   formControlName="firstName"  />
+                                <span class="help-block" *ngIf="(patientForm.get('firstName').touched || 
+                                                                 patientForm.get('firstName').dirty) && 
+                                                                 patientForm.get('firstName').errors">
+                                    <span *ngIf="patientForm.get('firstName').errors.required">
+                                        Please enter patient last name.
+                                    </span>
+                                    <span *ngIf="patientForm.get('firstName').errors.minlength">
+                                            The first name must be longer than 2 characters.
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+    
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('lastName').touched || 
+                                                  patientForm.get('lastName').dirty) && 
+                                                  !patientForm.get('lastName').valid }">
+
+                        <label class="col-md-2 control-label" for="lastNameId">Last Name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   id="lastNameId" 
+                                   type="text" 
+                                   placeholder="Last Name (required)" 
+                                   formControlName="lastName"  />
+                                <span class="help-block" *ngIf="(patientForm.get('lastName').touched || 
+                                                                 patientForm.get('lastName').dirty) && 
+                                                                 patientForm.get('lastName').errors">
+                                    <span *ngIf="patientForm.get('lastName').errors.required">
+                                        Please enter patient last name.
+                                    </span>
+                                    <span *ngIf="patientForm.get('lastName').errors.minlength">
+                                        The last name must be longer than 2 characters.
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('birthDate').touched || 
+                                                  patientForm.get('birthDate').dirty) && 
+                                                  !patientForm.get('birthDate').valid }">
+
+                        <label class="col-md-2 control-label" for="birthDateId">Birth Date</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                id="birthDateId" 
+                                type="text" 
+                                placeholder="YYYY/MM/DD  (required)" 
+                                formControlName="birthDate"  />
+                            <span class="help-block" *ngIf="(patientForm.get('birthDate').touched || 
+                                                             patientForm.get('birthDate').dirty) && 
+                                                             patientForm.get('birthDate').errors">
+                                <span *ngIf="patientForm.get('birthDate').errors.required">
+                                    Please enter patient birth date.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                            <label class="col-md-2 control-label">Gender</label>
+                            <div class="col-md-8">
+                                <label class="radio-inline">
+                                    <input type="radio" formControlName="gender" value="Male">Male
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" formControlName="gender" value="Female">Female
+                                </label>
+                            </div>
+                        </div>
+    
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('telephone').touched || 
+                                                  patientForm.get('telephone').dirty) && 
+                                                  !patientForm.get('telephone').valid }">
+
+                        <label class="col-md-2 control-label"  for="telephoneId">Telephone</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   id="telephoneId" 
+                                   type="tel" 
+                                   placeholder="telephone (required)" 
+                                   formControlName="telephone"  />
+                                <span class="help-block" *ngIf="(patientForm.get('telephone').touched || patientForm.get('telephone').dirty) && patientForm.get('telephone').errors">
+                                    <span *ngIf="patientForm.get('telephone').errors.required">
+                                        Please enter patient telephone.
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('address').touched || 
+                                                  patientForm.get('address').dirty) && 
+                                                  !patientForm.get('telephone').valid }">
+
+                        <label class="col-md-2 control-label" for="phoneId">Address</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   id="addressId" 
+                                   type="text" 
+                                   placeholder="address (required)" 
+                                   formControlName="address"  />
+                                <span class="help-block" *ngIf="(patientForm.get('address').touched || 
+                                                                patientForm.get('address').dirty) && 
+                                                                patientForm.get('address').errors">
+                                    <span *ngIf="patientForm.get('address').errors.required">
+                                        Please enter patient address.
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                            <label class="col-md-2 control-label"  for="statusId">Status</label>
+                            <div class="col-md-8">
+                                <select class="form-control" id="statusId" formControlName="status">
+                                    <option value="" disabled selected hidden>Select a status</option>
+                                    <option *ngFor="let statusInList of statusList" [value]="statusInList" [selected]="statusInList == status">
+                                        {{statusInList}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                <div *ngIf="patient.accountId == 0">
+                    
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('username').touched || 
+                                                  patientForm.get('username').dirty) && 
+                                                  !patientForm.get('username').valid }">
+
+                        <label class="col-md-2 control-label" for="usernameId">Username</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                id="usernameId" 
+                                type="text" 
+                                placeholder="Username (required)" 
+                                formControlName="username"  />
+                            <span class="help-block" *ngIf="(patientForm.get('username').touched || 
+                                                             patientForm.get('username').dirty) && 
+                                                             patientForm.get('username').errors">
+                                <span *ngIf="patientForm.get('username').errors.required">
+                                    Please enter patient username.
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                        [ngClass]="{'has-error': (patientForm.get('email').touched || 
+                                                  patientForm.get('email').dirty) && 
+                                                  !patientForm.get('email').valid }">
+
+                        <label class="col-md-2 control-label" for="emailId">Email</label>
+                        <div class="col-md-8">
+                            <input class="form-control" 
+                                   id="emailId" 
+                                   type="email" 
+                                   placeholder="Email (required)" 
+                                   formControlName="email"  />
+                                 <span class="help-block" *ngIf="(patientForm.get('email').touched || 
+                                                             patientForm.get('email').dirty) && 
+                                                             patientForm.get('email').errors">
+                                    <span *ngIf="patientForm.get('email').errors.required">
+                                        Please enter patient email.
+                                    </span>
+                                    <span *ngIf="patientForm.get('email').errors.pattern">
+                                        Please enter a valid email.
+                                    </span>
+                                </span>
+                        </div>
+                    </div>
+
+                     <div class="form-group"
+                            [ngClass]="{'has-error': (patientForm.get('password').touched || 
+                                                      patientForm.get('password').dirty) && 
+                                                      !patientForm.get('password').valid }">
+
+                            <label class="col-md-2 control-label" for="passwordId">Password</label>
+                            <div class="col-md-8">
+                                <input class="form-control" 
+                                    id="passwordId" 
+                                    type="password" 
+                                    placeholder="Password (required)" 
+                                    formControlName="password"  />
+                                <span class="help-block" *ngIf="(patientForm.get('password').touched || 
+                                                                patientForm.get('password').dirty) && 
+                                                                patientForm.get('password').errors">
+                                    <span *ngIf="patientForm.get('password').errors.required">
+                                        Please enter patient password.
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="form-group">
+                        <div class="col-md-4 col-md-offset-2">
+                            <span>
+                                <button class="btn btn-primary"
+                                        type="submit"
+                                        [disabled]="!patientForm.valid">
+                                    Save
+                                </button>
+                            </span>
+                            <span>
+                                    <a class="btn btn-default"
+                                       style="width:80px"
+                                       (click)="deletePatient()">
+                                        Delete
+                                    </a>
+                           </span> 
+                        </div>
+                    </div>
+                </fieldset>
+    
+    
+        </form>
+    
+    </div>
+</div>
+
+<!--
+<br>Dirty: {{ patientForm.dirty }} 
+<br>Touched: {{ patientForm.touched }}
+<br>Valid: {{ patientForm.valid }}
+<br>Value: {{ patientForm.value | json }}
+-->

@@ -1,0 +1,88 @@
+<div class="panel panel-primary" *ngIf='patient'>
+  <div class="panel-heading">
+    {{ pageTitle +': '+ patient.firstName +' '+patient.lastName }}
+  </div>
+
+  <div class='panel-body'>
+      <div class='row'>
+              <div class='col-md-6'>
+                    <div class='row'>
+                            <div class='col-md-3'>Registration date:</div>
+                            <div class='col-md-6'>{{patient.registerDate | date}}</div>
+                        </div>
+                    <div class='row'>
+                            <div class='col-md-3'>Account ID:</div>
+                            <div class='col-md-6'>{{patient.accountId}}</div>
+                        </div>
+                  <div class='row'>
+                      <div class='col-md-3'>Name:</div>
+                      <div class='col-md-6'>{{patient.firstName}}</div>
+                  </div>
+                  <div class='row'>
+                      <div class='col-md-3'>Lastname:</div>
+                      <div class='col-md-6'>{{patient.lastName }}</div>
+                  </div>
+                  <div class='row'>
+                        <div class='col-md-3'>Birthdate:</div>
+                        <div class='col-md-6'>{{patient.birthDate | date }}</div>
+                    </div>
+                  <div class='row'>
+                      <div class='col-md-3'>Gender:</div>
+                      <div class='col-md-6'>{{patient.gender}}</div>
+                  </div>
+                  <div class='row'>
+                        <div class='col-md-3'>Age:</div>
+                        <div class='col-md-6'>{{patient.age}}</div>
+                    </div>
+                    <div class='row'>
+                            <div class='col-md-3'>Address:</div>
+                            <div class='col-md-6'>{{patient.address}}</div>
+                        </div>
+                  <div class='row'>
+                      <div class='col-md-3'>Phone:</div>
+                      <div class='col-md-6'>{{patient.telephone}}</div>
+                  </div>
+                  <div class='row'>
+                        <div class='col-md-3'>Email:</div>
+                        <div class='col-md-6'>{{patient.email}}</div>
+                    </div>
+                    <div class='row'>
+                            <div class='col-md-3'>Medicare Number:</div>
+                            <div class='col-md-6'>{{patient.medicareNumber}}</div>
+                        </div>
+                  <div class='row'>
+                      <div class='col-md-3'>Status:</div>
+                      <div class='col-md-6 bold'>{{patient.status}}</div>
+                  </div>
+              </div>
+    
+              <div class='col-md-6'>
+                  <img *ngIf='patient.photoUrl; else noPhoto' class='center-block img-responsive' 
+                       [style.width.px]='200' 
+                       [style.margin.px]='2' 
+                       [src]='patient.photoUrl'
+                       [title]='patient.FirstName'>
+
+                   <ng-template #noPhoto>
+                    <img src='./assets/images/default_profile.jpg' class='center-block img-responsive'
+                        [title]='patient.firstName'
+                        [style.width.px]='200'
+                        [style.margin.px]='2'>
+                   </ng-template>
+              </div>
+
+
+      </div>
+  </div>
+
+
+  <div class='panel-footer'>
+      <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+          <i class='glyphicon glyphicon-chevron-left'></i> Back
+      </a>
+      <a class="btn btn-primary" style="width:80px;margin-left:10px" 
+           [routerLink]="['/patient', patient.accountId]">
+            Edit
+        </a>
+  </div>
+</div>
