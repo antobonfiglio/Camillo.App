@@ -22,7 +22,7 @@ import { PatientModule } from './patients/patient.module';
       {path:'welcome', component:WelcomeComponent},
       {path:'', redirectTo:'welcome', pathMatch:'full'},
       {path:'**', redirectTo:'welcome', pathMatch:'full'},
-    ],{useHash:true}),
+    ],{useHash:false}),
     PatientModule
   ],
   bootstrap: [AppComponent]
