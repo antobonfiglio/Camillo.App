@@ -13,7 +13,7 @@ import { PatientEntry } from "./patient-entry";
 @Injectable()
 export class PatientService {
     //private baseUrl ='./api/patients/patients.json';
-    private baseUrl ='http://localhost:63062/api/patients/';
+    private baseUrl ='http://camilloapi.azurewebsites.net/api/patients/';
 
     constructor(private _http: Http){}
 
