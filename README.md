@@ -1,6 +1,6 @@
 # Camillo APP
 
-Angular based Camillo ( Patient management system ) frontend.
+Angular based Camillo ( Health management system ) frontend.
 
 ## Development server
 
