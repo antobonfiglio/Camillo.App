@@ -52,8 +52,4 @@ export class PatientListComponent implements OnInit{
                                 this.filteredPatients = this.patients;
                             }, error => this.errorMessage = <any>error);
     }
-
-    onRatingClicked(message:string): void {
-        this.pageTitle = 'Patient List '+message;
-    }
 }
