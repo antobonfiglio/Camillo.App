@@ -14,7 +14,10 @@ import { PatientService } from './patient.service';
 
 export class PatientComponent implements OnInit {
   pageTitle :string = 'New Patient';
+  isEditMode:boolean = true; 
   errorMessage: string;
+  patientId:number;
+  
 
   patientForm : FormGroup;
   patient : PatientEntry = new PatientEntry();
@@ -59,6 +62,8 @@ export class PatientComponent implements OnInit {
 
     //for a new patient I also add Account FormControl Validators
     if(id==0){
+      this.isEditMode = false;
+      
       const emailControl = this.patientForm.get('email');
       emailControl.setValidators([Validators.required,
                                   Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+')]);

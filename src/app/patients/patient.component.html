@@ -150,7 +150,7 @@
                             </div>
                         </div>
 
-                <div *ngIf="patient.accountId == 0">
+                <div *ngIf="!isEditMode">
                     
                     <div class="form-group"
                         [ngClass]="{'has-error': (patientForm.get('username').touched || 
